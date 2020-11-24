@@ -4,17 +4,27 @@
     background-color: #ffffff;
 }
 /*by default flex display will give direction as row*/
-.header-content
-{
-    display: flex;
-    /*justify-content: center;*/
-    /*border: 1px solid green;*/
+.header{
+    padding: 15px 0;
+    background-color: #ffffff;
 }
-.logo-content
-{
-    display: flex;
+
+.logo-content{
+    display:flex;
+    flex-direction:row;
     align-items:center;
-    /*width:20%;*/
+    border: 0px solid green;
+    width:80%
+}
+.emp-text{
+    font:normal normal bold 20px/25px Montserrat;
+    font-family: "Montserrat",sans-serif;
+    letter-spacing:0px;
+    color:#82a70c;
+    text-transform:capitalize;
+}
+.emp-payroll{
+    color:#42515f;
 }
 .form-content
 {

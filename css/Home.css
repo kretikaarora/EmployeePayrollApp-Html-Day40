@@ -58,6 +58,17 @@ body{
     margin:0 auto;
     padding-bottom:25px;
 }
+.header-contentforbody
+{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    width:80%;
+    margin:0 auto;
+    padding-bottom:25px;
+
+}
 .emp-detail-text{
     font:normal normal bold 24px Roboto;
     letter-spacing:0px;

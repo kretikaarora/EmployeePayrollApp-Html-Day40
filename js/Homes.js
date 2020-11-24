@@ -17,8 +17,8 @@ const createInnerHtml=()=>
           </td>
           <td>444444</td>
           <td>18 September 2020</td>
-          <td><img id="1" onclick= "remove(this)" alt="delete" src="../assets/icons/delete-black-18dp.svg">
-            <img id="1" onclick= "update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg"></td>
+          <td><img id="1" onclick= "remove(this)" alt="delete" src="C:\Users\Administrator\Desktop\Html-EmployeePayrollApp-Day40\assets\delete-black-18dp (1).svg">
+            <img id="1" onclick= "update(this)" alt="edit" src="C:\Users\Administrator\Desktop\Html-EmployeePayrollApp-Day40\assets\create-black-18dp (1).svg"></td>
     </tr>`;
     document.querySelector('#table-display').innerHTML=innerHTML;
 }

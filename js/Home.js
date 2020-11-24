@@ -3,34 +3,76 @@ window.addEventListener('DOMContentLoaded',(event)=>
 {
     createInnerHtml();
 });
-
 //creating inner html to dynamically input data during run time from js file
 //we are using template literals which allows embedded expression
 //template literals are enclosed by a backticl ``
 //we can also inject expressions in template literal using $ sign
 const createInnerHtml=()=>{
-    //we are defining the header here in a const
-    const headerHtml= "<th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th>"
-    //now where ever we want to use this headerhtml inside templete literals we can use with a dollar sign
-    //if we dont want to use $ sign we can directly input it like we did for table rows
-    const innerHTML= `${headerHtml}
+    const headerHtml= "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>"
+    //using template literal
+    let innerHtml= `${headerHtml}`;
+    let empPayrollList= createEmployeePayrollJSON();
+    for(const empPayrollData of empPayrollList){
+    innerHtml= `${innerHtml}
     <tr>
-        <td><img class="profile" alt="" src="..\assets\Ellipse 1.png"></td>
-        <td>Kretika Arora</td>
-        <td>Female</td>
-        <td>
-            <div class='dept-label'>HR</div>
-            <div class="dept-label">Finance</div>
-        </td>
-        <td>410000</td>
-        <td>22 November 2020</td>
-        <!--remove(this) and update(this) func will be added later on-->
-        <!--when we click on these images this func will perform-->
-        <td>
-            <img id="1" onclick= "remove(this)" alt="delete" src="..\assets\delete-black-18dp (1).svg">
-            <img id="1" onclick= "update(this)" alt="edit" src="..\assets\create-black-18dp (1).svg">
-        </td>        
-</tr>`;
-//passing the table id using query selector and passing it to inbuilt innerHTML
-document.querySelector('#table-display').innerHTML=innerHTML;
+          <td><img class="profile" alt="" src="${empPayrollData._profilePic}"></td>
+          <td>${empPayrollData._name}</td>
+          <td>${empPayrollData._gender}</td>
+          <td>${getDeptHtml(empPayrollData._department)}
+          </td>
+          <td>${empPayrollData._salary}</td>
+          <td>${empPayrollData._startDate}</td>
+          <td><img id="${empPayrollData._id}" onclick= "remove(this)" alt="delete" src="../assets/delete-black-18dp (1).svg">
+            <img id="${empPayrollData.id}" onclick= "update(this)" alt="edit" src="../assets/create-black-18dp (1).svg "></td>
+    </tr>`;
+    }
+    document.querySelector('#table-display').innerHTML=innerHtml;
 }
+
+//since we can have multiple departments so using for loop fetching each department
+const getDeptHtml= (deptList)=>
+{
+    let deptHtml='';
+    for(const dept of deptList)
+    {
+        //the format is similar like we were doing for inner html
+        //we are printing value for each dept in json file
+        deptHtml= `${deptHtml}
+        <div class="dept-label">${dept}</div>`
+    }
+    return deptHtml;
+}  
+
+//creating a employeepayroll data in json format called from createinnerhtml function
+const createEmployeePayrollJSON = () => {
+    let empPayrollListLocal = [
+      {       
+        _name: 'Daisy',
+        _gender: 'female',
+        _department: [
+            'Engineering',
+            'Finance'
+        ],
+        _salary: '500000',
+        _startDate: '29 Oct 2019',
+        _note: '',
+        _id: new Date().getTime(),
+        _profilePic: "..\assets\Ellipse 1.png"
+      },
+      {
+        _name: 'James',
+        _gender: 'male',
+        _department: [
+            'Sales'
+        ],
+        _salary: '400000',
+        _startDate: '15 Nov 2016',
+        _note: '',
+        _id: new Date().getTime() + 1,
+        _profilePic: "..\assets\Ellipse -5.png"
+      }
+    ];
+    return empPayrollListLocal;
+  }
+  
+ 

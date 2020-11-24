@@ -1,17 +1,31 @@
+// employee payroll is an array which will contain objects read from local storage
+// using this we will populate th table
+let empPayrollList;
 //as soon the page loades we want this inner html function to be called
 window.addEventListener('DOMContentLoaded',(event)=>
 {
+    //caling to read from local storage
+    empPayrollList= getEmployeePayrollDataFromStorage();
     createInnerHtml();
+    //updating the count of elements by setting textcontent to lenth of
+    document.querySelector(".emp-count").textContent= empPayrollList.length;
 });
+
+//calling from eventlistener as soon as the web page is loaded
+const getEmployeePayrollDataFromStorage= ()=>{
+    //it will go the local storage fetch the info if it is there convert to json otherwise return empty list
+    return localStorage.getItem('EmployeePayrollList')?JSON.parse(localStorage.getItem('EmployeePayrollList')):[];
+}
+
 //creating inner html to dynamically input data during run time from js file
 //we are using template literals which allows embedded expression
 //template literals are enclosed by a backticl ``
 //we can also inject expressions in template literal using $ sign
 const createInnerHtml=()=>{
+    if(empPayrollList.length==0) return;
     const headerHtml= "<tr><th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th></tr>"
     //using template literal
     let innerHtml= `${headerHtml}`;
-    let empPayrollList= createEmployeePayrollJSON();
     for(const empPayrollData of empPayrollList){
     innerHtml= `${innerHtml}
     <tr>
@@ -57,7 +71,7 @@ const createEmployeePayrollJSON = () => {
         _startDate: '29 Oct 2019',
         _note: '',
         _id: new Date().getTime(),
-        _profilePic: "..\assets\Ellipse 1.png"
+        _profilePic: '..\assets\Ellipse 1.png'
       },
       {
         _name: 'James',
@@ -69,7 +83,7 @@ const createEmployeePayrollJSON = () => {
         _startDate: '15 Nov 2016',
         _note: '',
         _id: new Date().getTime() + 1,
-        _profilePic: "..\assets\Ellipse -5.png"
+        _profilePic: '..\assets\Ellipse -5.png'
       }
     ];
     return empPayrollListLocal;
